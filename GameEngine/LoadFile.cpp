@@ -4,12 +4,10 @@
 LoadFile::LoadFile() {}
 
 LoadFile::LoadFile(const char * fileName)
-{
-	imageName = nullptr;
-
+{	
 	LoadObj(fileName);
-
 }
+
 void LoadFile::LoadObj(const char * fileName)
 {
 	ifstream objectFile(fileName);//check to see if the file can is found = null	
@@ -73,7 +71,7 @@ void LoadFile::LoadObj(const char * fileName)
 				//if(!EOF)
 				continue;
 			}else {
-				
+				//gameEng.getObjectMap();
 				objectFile.close();
 
 			}
@@ -92,17 +90,30 @@ void LoadFile::LoadObj(const char * fileName)
 
 void LoadFile::makeGamePiece(std::string imageFile_, Vec3 objVector_, int typeOfPiece_)
 {
+	static int count = 0;
+	count++;
+
 	switch (typeOfPiece_) {
 	case 1:
-		
+		characterSpriteName = imageFile_;
+		CharacterVector = objVector_;
+		Body* body = new Body(characterSpriteName, CharacterVector);
+		vecOfBodies.insert(std::pair<int, Body*>(count, body));
 		break;
 
 	case 2:
+		EnemySpriteName = imageFile_;
+		EnemyVector = objVector_;
+		Body* body = new Body(EnemySpriteName, EnemyVector);
+		vecOfBodies.insert(std::pair<int, Body*>(count, body));
 		
 		break;
 
 	case 3:
-		
+		LandSpriteName = imageFile_;
+		LandVector = objVector_;
+		Body* body = new Body(LandSpriteName, LandVector);
+		vecOfBodies.insert(std::pair<int, Body*>(count, body));
 		break;
 
 	default:
@@ -110,6 +121,7 @@ void LoadFile::makeGamePiece(std::string imageFile_, Vec3 objVector_, int typeOf
 	}
 
 }
+void populateVectors() {}
 
 float LoadFile::iterateVect(std::string nextLine)
 {
