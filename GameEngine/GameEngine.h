@@ -25,6 +25,8 @@ private:
 
 public:
 	GameEngine();
+	GameEngine(SDL_Window* sdlWindow_);
+	void OnCreate();
 	void Update();
 	void HandleEvents();
 	void Render();

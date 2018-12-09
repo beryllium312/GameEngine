@@ -3,14 +3,14 @@
 GameEngine::GameEngine()
 {
 }
-GameEngine(SDL_Window* sdlWindow_,)
+GameEngine::GameEngine(SDL_Window* sdlWindow_)
 {
 	window = sdlWindow_;
 	elapsedTime = 0.0f;
 }
 
 
-void OnCreate()
+void GameEngine::OnCreate()
 {
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
@@ -23,13 +23,13 @@ void OnCreate()
 
 
 }
-void Update() 
+void GameEngine::Update()
 {
 
 }
 void HandleEvents() 
 {
-	swtich(key) 
+	switch(key) 
 	{
 		case 1:
 			currentItem = createCharacter();
@@ -60,7 +60,7 @@ void HandleEvents()
 	}
 
 }
-void Render() 
+void GameEngine::Render()
 {
 	Vec3 screenCoords = projectionMatrix * body->pos;
 
@@ -76,7 +76,7 @@ void Render()
 	SDL_UpdateWindowSurface(window);
 
 }
-void OnDestroy() 
+void GameEngine::OnDestroy()
 {
 	/*if (body) {
 		delete body;
